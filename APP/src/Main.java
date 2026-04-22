@@ -7,8 +7,16 @@ public class Main {
         var inch = new QuantityMeasurementApp.Quantity(12.0,
                 QuantityMeasurementApp.LengthUnit.INCH);
 
-        var result = f.add(inch);
+        System.out.println(
+                QuantityMeasurementApp.Quantity.add(f, inch,
+                        QuantityMeasurementApp.LengthUnit.FEET));
 
-        System.out.println("Result: " + result);
+        System.out.println(
+                QuantityMeasurementApp.Quantity.add(f, inch,
+                        QuantityMeasurementApp.LengthUnit.INCH));
+
+        System.out.println(
+                QuantityMeasurementApp.Quantity.add(f, inch,
+                        QuantityMeasurementApp.LengthUnit.YARD));
     }
 }
