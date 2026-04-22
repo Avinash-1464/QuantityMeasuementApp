@@ -1,9 +1,34 @@
 public class QuantityMeasurementApp {
-    public static class Feet {
-        private final double value;
 
-        public Feet(double value) {
+    public enum LengthUnit {
+        FEET(1.0),
+        INCH(1.0 / 12.0);
+
+        private final double toFeetFactor;
+
+        LengthUnit(double toFeetFactor) {
+            this.toFeetFactor = toFeetFactor;
+        }
+
+        public double toFeet(double value) {
+            return value * toFeetFactor;
+        }
+    }
+
+    public static class Quantity {
+        private final double value;
+        private final LengthUnit unit;
+
+        public Quantity(double value, LengthUnit unit) {
+            if (unit == null) {
+                throw new IllegalArgumentException("Unit cannot be null");
+            }
             this.value = value;
+            this.unit = unit;
+        }
+
+        private double toFeet() {
+            return unit.toFeet(value);
         }
 
         @Override
@@ -15,44 +40,9 @@ public class QuantityMeasurementApp {
 
             if (getClass() != obj.getClass()) return false;
 
-            Feet other = (Feet) obj;
+            Quantity other = (Quantity) obj;
 
-            return Double.compare(this.value, other.value) == 0;
+            return Double.compare(this.toFeet(), other.toFeet()) == 0;
         }
-    }
-
-    public static class Inches {
-        private final double value;
-
-        public Inches(double value) {
-            this.value = value;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-
-            if (this == obj) return true;
-
-            if (obj == null) return false;
-
-            if (getClass() != obj.getClass()) return false;
-
-            Inches other = (Inches) obj;
-
-            return Double.compare(this.value, other.value) == 0;
-        }
-    }
-
-
-    public static boolean compareFeet(double v1, double v2) {
-        Feet f1 = new Feet(v1);
-        Feet f2 = new Feet(v2);
-        return f1.equals(f2);
-    }
-
-    public static boolean compareInches(double v1, double v2) {
-        Inches i1 = new Inches(v1);
-        Inches i2 = new Inches(v2);
-        return i1.equals(i2);
     }
 }
