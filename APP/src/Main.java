@@ -1,12 +1,23 @@
 public class Main {
     public static void main(String[] args) {
 
-        QuantityMeasurementApp.Quantity q1 =
-                new QuantityMeasurementApp.Quantity(1.0, QuantityMeasurementApp.LengthUnit.FEET);
+        var yard = new QuantityMeasurementApp.Quantity(1.0,
+                QuantityMeasurementApp.LengthUnit.YARD);
 
-        QuantityMeasurementApp.Quantity q2 =
-                new QuantityMeasurementApp.Quantity(12.0, QuantityMeasurementApp.LengthUnit.INCH);
+        var feet = new QuantityMeasurementApp.Quantity(3.0,
+                QuantityMeasurementApp.LengthUnit.FEET);
 
-        System.out.println("Are equal? " + q1.equals(q2));
+        var inch = new QuantityMeasurementApp.Quantity(36.0,
+                QuantityMeasurementApp.LengthUnit.INCH);
+
+        var cm = new QuantityMeasurementApp.Quantity(1.0,
+                QuantityMeasurementApp.LengthUnit.CM);
+
+        var inchFromCm = new QuantityMeasurementApp.Quantity(0.393701,
+                QuantityMeasurementApp.LengthUnit.INCH);
+
+        System.out.println("Yard == Feet: " + yard.equals(feet));
+        System.out.println("Yard == Inches: " + yard.equals(inch));
+        System.out.println("CM == Inches: " + cm.equals(inchFromCm));
     }
 }
