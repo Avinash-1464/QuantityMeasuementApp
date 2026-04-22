@@ -1,10 +1,12 @@
 public class Main {
     public static void main(String[] args) {
 
-        boolean feetResult = QuantityMeasurementApp.compareFeet(1.0, 1.0);
-        boolean inchResult = QuantityMeasurementApp.compareInches(1.0, 1.0);
+        QuantityMeasurementApp.Quantity q1 =
+                new QuantityMeasurementApp.Quantity(1.0, QuantityMeasurementApp.LengthUnit.FEET);
 
-        System.out.println("Feet equal? " + feetResult);
-        System.out.println("Inches equal? " + inchResult);
+        QuantityMeasurementApp.Quantity q2 =
+                new QuantityMeasurementApp.Quantity(12.0, QuantityMeasurementApp.LengthUnit.INCH);
+
+        System.out.println("Are equal? " + q1.equals(q2));
     }
 }
